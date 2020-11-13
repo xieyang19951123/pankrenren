@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.renren.modules.pank.dao.DotDao">
+    <select id="getList" resultType="io.renren.modules.pank.entity.DotVo">
+
+SELECT ps_dot.*,url,url_min  FROM ps_dot LEFT JOIN pk_accessory ON pk_accessory.id = ps_dot.`a_id` WHERE ps_dot.`show_status` =1
+    </select>
+    <select id="accessorys" resultType="io.renren.modules.pank.entity.Accessory">
+        select *  from pk_accessory where id in ${ids}
+    </select>
+
+    <select id="getPunchup" resultType="io.renren.modules.pank.entity.ShowEntity">
+
+        SELECT   a.`d_name` AS `name`,IFNULL(b.mynumber,0) as `value` FROM ps_dot AS a LEFT JOIN (
+
+SELECT 	dot_tag,COUNT(1)AS mynumber  FROM pk_punch_card_record GROUP  BY dot_tag
+)AS b  ON a.`d_tag`= b.dot_tag
+    </select>
+</mapper>
