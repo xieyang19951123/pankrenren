@@ -64,7 +64,6 @@ public class PkUserServiceImpl extends ServiceImpl<PkUserDao, PkUserEntity> impl
 
         //List<Ranking> collect1 = selectpangpna.stream().sorted(Comparator.comparing(Ranking::getUseTime)).collect(Collectors.toList());
         for (int i = 0; i <selectpangpna.size() ; i++) {
-
             List<Ranking> ranking = rankingDao.selectList(new QueryWrapper<>(selectpangpna.get(i)));
             Optional<Ranking> rs = ranking.stream().filter(item -> item.getUseTime() != null).distinct().min((e1, e2) -> e1.getUseTime().compareTo(e2.getUseTime()));
             if(!rs.isPresent()){

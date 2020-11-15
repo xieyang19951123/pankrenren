@@ -7,7 +7,7 @@
 
     <select id="selectpangpna" resultType="io.renren.modules.pank.entity.Ranking">
 
-           SELECT * FROM (SELECT IFNULL(MIN(use_time),0) AS user_time,userid FROM pk_ranking  WHERE complete =1  and team_id =0 and show_status =1 GROUP BY  userid ORDER BY user_time ) AS b WHERE  user_time !=0 ORDER BY user_time
+           SELECT * FROM (SELECT IFNULL(MIN(use_time),0) AS user_time,userid FROM pk_ranking  WHERE complete =1   GROUP BY  userid ORDER BY user_time ) AS b WHERE  user_time !=0 ORDER BY user_time
         </select>
 
 </mapper>

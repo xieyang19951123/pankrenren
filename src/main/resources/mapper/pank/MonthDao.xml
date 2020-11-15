@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="io.renren.modules.pank.dao.MonthDao">
+
+    <select id="yearsnumbers" resultType="io.renren.modules.pank.entity.Month">
+
+        SELECT SUM(pnumber) pnumber,years  FROM pk_month WHERE show_status =1 GROUP BY years
+    </select>
+
+    <select id="monthnumbers" resultType="io.renren.modules.pank.entity.Month">
+
+        SELECT SUM(pnumber)pnumber,`month`  FROM pk_month WHERE show_status =1 AND years=#{years} GROUP BY `month`
+    </select>
+
+    <select id="weeknumbers" resultType="io.renren.modules.pank.entity.Month">
+
+        SELECT pnumber,`month`,`week`  FROM pk_month WHERE show_status =1 AND years=#{years} and  `month`=#{month}
+    </select>
+
+
+</mapper>
